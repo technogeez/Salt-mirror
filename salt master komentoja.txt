@@ -1,0 +1,41 @@
+# Tällä komennolla voit kopioida vaikka kokonaisia kansioita minionille komentorivillä. Komennon loppuosa varmistaa, että kansiosta tuhotaan aikaisemmat tiedostot ennenkuin kopioidaan uusia.
+salt '*' file.copy /path/to/src_dir /path/to/dst_dir recurse=True remove_existing=True
+
+
+# Laittaa minionin/minionit asentamaan paketin hallinnasta ohjelman.(toimii monilla eri linux distroilla= universaali komento)
+salt '*' pkg.install vlc
+
+
+# Kokeilee kaikille minioneille pingin ja listaa vastanneet minionit.
+sudo salt '*' test.ping
+
+# Listaa orjien verkkoosoitteet ja verkkolaitteet.('*'= meinaa että kaikille koneille. sevoi spesifioida esim = raspberry, salt-minion1)
+sudo salt '*' network.interfaces
+
+# Antaa minionin mac osoitteen.
+sudo salt '*'network.hwaddr
+
+# Tällä komennolla voit laittaa minionin suorittamaan komentorivi komentoja masterilta.
+sudo salt '*' cmd.run 'tähän-komento-minkä-haluat-suorittaa'  (merkin '*' voi korvata erillisellä minionilla kutsumalla suoraan minionin hostname.)
+ 
+#  network.netstat:
+        
+            Return information on open ports and states
+        
+            Note:
+                On BSD minions, the output contains PID info (where available) for each
+                netstat entry, fetched from sockstat/fstat output.
+        
+            Changed in version 2014.1.4
+                Added support for OpenBSD, FreeBSD, and NetBSD
+        
+            Changed in version 2015.8.0
+                Added support for SunOS
+        
+            Changed in version 2016.11.4
+                Added support for AIX
+        
+            CLI Example:
+        
+                salt '*' network.netstat
+# 
